@@ -31,5 +31,28 @@ Table
 사용할 수 있는 명령어는    
 - ADD 필드이름 필드타입 
 - DROP 필드이름
-- MODIFY COLUMN 필드이름 필드타입
-- 
+- MODIFY COLUMN 필드이름 필드타입   
+
+Drop
+--   
+삭제에 관한 설명이다    
+사용 방식은 아래와 같다   
+![image](https://user-images.githubusercontent.com/80444565/124071759-d0dde380-da7a-11eb-976b-7f6ef4627e74.png)   
+Drop 이후 삭제할 요소를 입력한다   
+   
+TRUNCATE
+--   
+Drop으로 요소를 삭제하면 당연하게도 모든 데이터가 소실된다.   
+이 때 저장된 데이터만 날리고 요소는 남겨두고 싶을 때 Truncate을 사용한다. 방법은 아래와 같다    
+![image](https://user-images.githubusercontent.com/80444565/124072974-747bc380-da7c-11eb-9ed6-33f10771eae0.png)     
+테이블에 있는 데이터만 날아가고 다시작성할 수 있는 상태가 된다.   
+
+if exist문을 이용한다면 테이블이 없어 발생하는 애러를 막을 수 있다.   
+![image](https://user-images.githubusercontent.com/80444565/124073218-d3d9d380-da7c-11eb-89bb-52fb995c9a15.png)    
+
+INSERT
+--    
+insert INTO문과 VLAUES절을 사용하여 테이블에 새로운 레코드를 추가할 수 있다.   
+지정되있는 테이블요소에 데이터값을 집어넣는 것이다. 사용방법은 아래와 같다.   
+![image](https://user-images.githubusercontent.com/80444565/124074745-e81ed000-da7e-11eb-94d1-7c3c4360bc9c.png)   
+필드에 지정할 값을 정하고 그 값의 순서에 맞춰서 VALUSE()에 지정을 해주면된다. 유의할 점은 문자열일 경우에 ''로 묶어줘야 한다는 점이다.   
