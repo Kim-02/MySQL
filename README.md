@@ -73,4 +73,50 @@ DELETE
 코드를 직역하면 'test라는 테이블에서 삭제하겠다. 룸넘버가 2002인'   
 이정도로 해석할 수 있다. 요는 DELETE FROM에서 테이블을 선택하고 이후 밑에 WHERE에서 조건을 주는것이다.   
 
-
+SELECT
+--
+테이블에서 하나의 필드를 선택하여 불러올 수 있다.   
+기본적인 활용은 아래와 같다.    
+![image](https://user-images.githubusercontent.com/80444565/124424461-05ff7400-dda2-11eb-94d2-96c7c468fb55.png)   
+TEST에서 ID라는 필드를 가져온다. WHERE을 사용하면 좀더 세부적으로 원하는 필드를 불러올 수 있다.   
+![image](https://user-images.githubusercontent.com/80444565/124424603-3c3cf380-dda2-11eb-979c-19952b740be2.png)   
+2002라는 ID값을 가진 필드를 TEST테이블에서 불러온다.
+파이썬과 같이 별을 이용해서 모든 필드를 선택할 수 있다.   
+아래와 같이 SELECT에 여러가지 필드 이름을 명시하면 해당 테이블의 여러가지 정보를 가져올 수 있다.   
+이것 역시 WHERE 키워드로 더 자세한 조건을 명시할 수 있다.    
+```SQL
+SELECT name,id
+from test
+-- WHERE Id <= 3 AND ReseveDate > '2021-02-01'
+```    
+DISTINCT 키워드를 활용하여 테이블에서 필드를 선택할 때 중복되는 값을 한번만 선택할 수 있다.
+```SQL
+SELECT DISTINCT name
+FROM test
+```    
+ORDER BY 키워드를 사용하여 오름차순으로 데이터를 정렬할 수 있다.   
+```SQL
+SELECT *
+FROM test
+ORDER BY ReserveDate;
+```   
+위 예제는 ReserveDate의 데이터를 오름차순으로 모든 데이터를 정렬해준다.   
+```SQL
+SELECT *
+FROM test
+ORDER BY ReserveDate DESC;
+```   
+위 예제는 ReseveDate의 데이터를 내림차순으로 정리해준다.   
+PHP에서는 기본적으로 대소문자를 구분하지 않는다.   
+대소문자를 구분하여 정렬을 하고 싶을 때는 아래 구문을 활용한다.   
+```SQL
+ORDER BY BINARY ReserveDate;
+```   
+MySQL은 별칭 부여를 통해 좀더 가시화된 데이터를 만들 수 있다.
+```SQL
+SELECT ReseveDate,CONCAT(name,':',RoomNum) AS ReserveInfo
+FROM test
+```    
+TEST테이블에서 Resevedate라는 필드와 CONCAT로 name : RoomNum를 받아 문자열로 변환시켜주었다.   
+이후 AS를 활용하여 CONCAT로 받은 문자열을 임시로 저장하는 ReseveInfo라는 필드를 임의로 만들어주었다.   
+이것이 별칭부여이다.   
