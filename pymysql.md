@@ -81,4 +81,38 @@ ws = wb.active
 ```   
 간단하게 openpyxl에 있는 메소드인 load_workbook을 가져와 엑셀파일을 열어준다.   
 
+엑셀 데이터 읽기
+--
+가져온 엑셀 데이터를 읽어준다.   
+pandas를 이용하지 않고 openpyxl을 채용한 이유는 pandas는 한줄 한줄 긴 데이터를 읽어올 때 편리한 기능을 가지고 있다.   
+하지만 현제 해야하는 방식은 하나하나의 셀에 들어가 값을 리스트에 넣어줘야 하기 때문에 한줄을 가져오는 것은 별로 의미가 없다.    
+따라서 openpyxl을 활용하여 각각의 셀에 접근하였다.   
+```python
+for down in range(range_1):
+    for length in range(6):
+        if length+1 == 4 or length+1 == 6:
+            main_user_list[down].append(alter_date(ws.cell(down+2,length+1).value))
+        else:
+            main_user_list[down].append(ws.cell(down+2,length+1).value)
+```   
+하나하나 살펴보면   
+```python
+for down in range(range_1):
+```   
+openpyxl에서 셀을 읽는 방식을 먼저 알아야한다.   
+ws.cell(y,x).value이런 형식으로 데이터를 읽어오게 된다.   
+따라서 이중 for문을 활용하여 이차원 형식의 데이터를 가져올 수 있도록 할 것이다.    
+먼저 어디까지 긁어올 지 사용자에게 입력하도록 한 후 range값을 넣어 그만큼 반복하도록 한다.     
+```python
+for length in range(6):
+```   
+읽어올 데이터의 종류가 몇개인지 지정하는 코드이다.   
+현제 읽어올 데이터는 총 6종류임으로 총 6번 반복하면 되기 때문에 range값을 6을 주었다.   
+때에 따라 제어하기 위해 input문으로 사용자에게 직접입력받는 방법도 있다.   
 
+```python
+if length+1 == 4 or length+1 == 6:
+    main_user_list[down].append(alter_date(ws.cell(down+2,length+1).value))
+else:
+    main_user_list[down].append(ws.cell(down+2,length+1).value)
+```   
